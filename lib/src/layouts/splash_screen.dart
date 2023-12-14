@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
         });
       } else if (_typedText.length == 4) {
         _timer.cancel();
-        Get.toNamed(AppPages.home);
+        Get.offAndToNamed(AppPages.home);
       }
     });
   }

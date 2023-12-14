@@ -29,20 +29,29 @@ class AppleArticlesScreen extends StatelessWidget {
                         future: _controller.fetchArticles(),
                         builder: (context, snapshot) {
                           if (_controller.isNotConnected) {
-                            return NoInterConnectionScreen(onRefresh: () async {
-                              await _controller.initRefresh();
-                            });
+                            return RefreshIndicator(
+                              onRefresh: () async {
+                                await _controller.initRefresh();
+                              },
+                              child: NoInterConnectionScreen(onRefresh: () {}),
+                            );
                           } else if (snapshot.connectionState ==
                               ConnectionState.waiting) {
                             return const ArticleShimmer();
                           } else if (_controller.isError) {
-                            return ErrorScreen(onRefresh: () async {
-                              await _controller.initRefresh();
-                            });
+                            return RefreshIndicator(
+                              onRefresh: () async {
+                                await _controller.initRefresh();
+                              },
+                              child: ErrorScreen(onRefresh: () {}),
+                            );
                           } else if (_controller.articles.isEmpty) {
-                            return EmptyScreen(onRefresh: () async {
-                              await _controller.initRefresh();
-                            });
+                            return RefreshIndicator(
+                              onRefresh: () async {
+                                await _controller.initRefresh();
+                              },
+                              child: EmptyScreen(onRefresh: () {}),
+                            );
                           } else {
                             return RefreshIndicator(
                                 child: GetBuilder<AppleArticleController>(

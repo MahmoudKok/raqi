@@ -29,6 +29,7 @@ initHive() async {
   await Hive.openBox<ArticleModel>('buisness');
   await Hive.openBox<ArticleModel>('tesla');
   await Hive.openBox<ArticleModel>('wall');
+  await Hive.openBox<ArticleModel>('last');
 }
 
 void initGetXDepencies() {

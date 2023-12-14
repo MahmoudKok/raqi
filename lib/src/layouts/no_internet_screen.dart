@@ -7,14 +7,14 @@ import 'package:raqi/src/theme/app_image.dart';
 import 'package:raqi/src/theme/fonts_family.dart';
 
 class NoInterConnectionScreen extends StatelessWidget {
-  const NoInterConnectionScreen({super.key, required this.onRefresh});
+  const NoInterConnectionScreen({super.key, this.onRefresh});
   final onRefresh;
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: onRefresh,
-      child: Scaffold(
-        body: Padding(
+    return Scaffold(
+      body: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: horizontolpadding, vertical: verticalpadding),
           child: Center(

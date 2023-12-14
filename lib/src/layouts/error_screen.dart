@@ -7,14 +7,14 @@ import 'package:raqi/src/theme/app_image.dart';
 import 'package:raqi/src/theme/fonts_family.dart';
 
 class ErrorScreen extends StatelessWidget {
-  const ErrorScreen({super.key, required this.onRefresh});
+  const ErrorScreen({super.key, this.onRefresh});
   final onRefresh;
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: onRefresh,
-      child: Scaffold(
-        body: Padding(
+    return Scaffold(
+      body: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: horizontolpadding, vertical: verticalpadding),
           child: Center(

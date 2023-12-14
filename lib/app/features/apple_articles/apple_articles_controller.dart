@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:hive/hive.dart';
 
 import 'package:raqi/src/enums/article_type.dart';
@@ -32,14 +33,20 @@ class AppleArticleController extends GetxController {
             isFirstLoad = false;
           }
           update(['articles']);
+          isNotConnected = false;
+          isError = false;
         } else if (result == Messages.NO_INTERNET_CONNNECTION) {
           isNotConnected = true;
         } else if (result == Messages.NOT_FOUND) {
           isError = true;
         }
       } else {
-        print('local');
         articles = box.values.toList();
+        if (articles.isEmpty) {
+          isNotConnected = true;
+          return;
+        }
+        print('local');
       }
     } catch (e) {
       print(e);
@@ -48,6 +55,7 @@ class AppleArticleController extends GetxController {
 
   initRefresh() async {
     isFirstLoad = true;
+
     update(['init_refresh']);
   }
 

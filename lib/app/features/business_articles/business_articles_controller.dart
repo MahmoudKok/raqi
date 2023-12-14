@@ -31,14 +31,21 @@ class BusinessArticlesController extends GetxController {
             isFirstLoad = false;
           }
           update(['articles']);
+          isNotConnected = false;
+          isError = false;
         } else if (result == Messages.NO_INTERNET_CONNNECTION) {
           isNotConnected = true;
         } else if (result == Messages.NOT_FOUND) {
           isError = true;
         }
       } else {
+        if (isFirstLoad) {
+          isNotConnected = true;
+          return;
+        } else {
+          articles = box.values.toList();
+        }
         print('local');
-        articles = box.values.toList();
       }
     } catch (e) {
       print(e);
