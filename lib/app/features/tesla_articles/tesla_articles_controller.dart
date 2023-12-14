@@ -39,11 +39,10 @@ class ArticleTesalController extends GetxController {
           isError = true;
         }
       } else {
-        if (isFirstLoad) {
+        articles = box.values.toList();
+        if (articles.isEmpty) {
           isNotConnected = true;
           return;
-        } else {
-          articles = box.values.toList();
         }
         print('local');
       }
